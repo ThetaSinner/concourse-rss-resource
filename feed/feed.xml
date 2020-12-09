@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>CRSSR Sample</title>
+        <link>https://github.com/ThetaSinner/concourse-rss-resource</link>
+        <description>A sample feed for the concourse-rss-resource</description>
+        <language>en-gb</language>
+        <item>
+            <title>A</title>
+            <link>https://github.com/ThetaSinner/concourse-rss-resource/feed/a.json</link>
+        </item>
+        <item>
+            <title>B</title>
+            <link>https://github.com/ThetaSinner/concourse-rss-resource/feed/b.json</link>
+        </item>
+    </channel>
+</rss>
