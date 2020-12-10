@@ -20,6 +20,6 @@ namespace concourse_rss_resource.ConcourseModel
     public class RssVersion
     {
         [JsonPropertyName("index")]
-        public int Index { get; set; }
+        public string Index { get; set; }
     }
 }

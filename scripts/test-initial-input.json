@@ -2,7 +2,5 @@
   "source": {
     "uri": "https://raw.githubusercontent.com/ThetaSinner/concourse-rss-resource/main/feed/feed.xml"
   },
-  "version": {
-    "index": "1"
-  }
+  "version": {}
 }

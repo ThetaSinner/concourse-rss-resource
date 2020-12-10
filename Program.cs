@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text.Json;
 using System.Xml.Serialization;
@@ -88,12 +89,26 @@ namespace concourse_rss_resource
         private static void IsUpdated(ResourceInputModel resourceInputModel, RssModel20.RssModel20 model)
         {
             var output = new LinkedList<RssVersion>();
-            for (var i = resourceInputModel.Version.Index; i <= model.Channel.Items.Count; i++)
-            {
-                var rssVersion = new RssVersion {Index = i};
-                output.AddLast(rssVersion);
-            }
 
+            if (resourceInputModel.Version?.Index == null)
+            {
+                // First call, so a version is not provided on the input. Just provide a single latest version!
+
+                var count = model.Channel.Items.Count;
+                if (count > 0)
+                {
+                    output.AddLast(new RssVersion { Index = count.ToString() });
+                }
+            }
+            else
+            {
+                for (var i =  int.Parse(resourceInputModel.Version.Index); i <= model.Channel.Items.Count; i++)
+                {
+                    var rssVersion = new RssVersion {Index = i.ToString()};
+                    output.AddLast(rssVersion);
+                }
+            }
+            
             var jsonOutput = JsonSerializer.Serialize(output);
             Console.Write(jsonOutput);
             Console.Out.Flush();
@@ -111,7 +126,12 @@ namespace concourse_rss_resource
 
         private void FetchResource(ResourceInputModel resourceInputModel, string outDir, RssModel20.RssModel20 model)
         {
-            var index = model.Channel.Items.Count - resourceInputModel.Version.Index;
+            if (resourceInputModel.Version?.Index == null)
+            {
+                return;
+            }
+            
+            var index = model.Channel.Items.Count - int.Parse(resourceInputModel.Version.Index);
 
             var item = model.Channel.Items[index];
 

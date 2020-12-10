@@ -1,13 +1,22 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-./check < test-input.json
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+pushd "$DIR" > /dev/null || exit
+
+./check [] < "$DIR"/test-initial-input.json
+
+printf "\n\n"
+
+./check < "$DIR"/test-input.json
 
 printf "\n\n"
 
-./in "output" < test-input.json
+./in "output" < "$DIR"/test-input.json
 
 printf "\n\n"
 
-./out < test-input.json
+./out < "$DIR"/test-input.json
 
 printf "\n\n"
+
+popd > /dev/null || exit
