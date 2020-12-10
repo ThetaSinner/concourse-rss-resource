@@ -6,6 +6,11 @@
         <description>A sample feed for the concourse-rss-resource</description>
         <language>en-gb</language>
         <item>
+            <title>C</title>
+            <link>https://github.com/ThetaSinner/concourse-rss-resource/feed/c.json</link>
+            <description>Feed item C</description>
+        </item>
+        <item>
             <title>B</title>
             <link>https://github.com/ThetaSinner/concourse-rss-resource/feed/b.json</link>
         </item>
